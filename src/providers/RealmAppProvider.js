@@ -1,6 +1,5 @@
 import React, { useContext, useState, useRef } from "react";
 import * as Realm from "realm-web";
-import { getRealmApp } from "../getRealmApp";
 
 const REALM_APP_ID = "shoppies-app-frnsh";
 const app = new Realm.App({ id: REALM_APP_ID });
