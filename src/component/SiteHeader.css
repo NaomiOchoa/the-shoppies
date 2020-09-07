@@ -1,0 +1,18 @@
+.site-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+}
+
+.site-title {
+  grid-column: 2/3;
+  text-align: center;
+  color: #f0efec;
+}
+
+.logout-button {
+  grid-column: 3/4;
+  width: 7.5em;
+  height: 3em;
+  justify-self: right;
+}

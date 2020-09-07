@@ -2,6 +2,7 @@ import React from "react";
 import RealmAppProvider, { useRealmApp } from "./providers/RealmAppProvider";
 import RealmApolloProvider from "./providers/RealmApolloProvider";
 import Login from "./component/Login";
+import MainPage from "./component/MainPage";
 import "./App.css";
 
 function App() {
@@ -20,7 +21,9 @@ function RequireAuthentication() {
     return <div>Loading</div>;
   }
   return app.user ? (
-    <RealmApolloProvider>//Main Page</RealmApolloProvider>
+    <RealmApolloProvider>
+      <MainPage />
+    </RealmApolloProvider>
   ) : (
     <Login />
   );

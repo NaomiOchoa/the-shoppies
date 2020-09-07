@@ -8,6 +8,8 @@ import {
   Grid,
 } from "semantic-ui-react";
 import { useRealmApp } from "../providers/RealmAppProvider";
+import "./Login.css";
+import SiteHeader from "./SiteHeader";
 
 export default function Login() {
   const [mode, setMode] = React.useState("signup");
@@ -38,49 +40,52 @@ export default function Login() {
   };
 
   return (
-    <Grid textAlign="center" verticalAlign="middle">
-      <Grid.Column>
-        <Segment>
-          <Header as="h2" textAlign="center">
-            {mode === "signup" ? "Sign Up" : "Log In"}
-          </Header>
-          <Form size="large" onSubmit={handleSubmit}>
-            <Form.Input
-              fluid
-              icon="user"
-              iconPosition="left"
-              placeholder="E-mail address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Form.Input
-              fluid
-              icon="lock"
-              iconPosition="left"
-              placeholder="Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-
-            <Button type="submit" fluid size="large">
+    <div className="main-content login-page">
+      <SiteHeader location={"login"} />
+      <Grid textAlign="center" className="login-form">
+        <Grid.Column style={{ width: "50%", margin: "2em" }}>
+          <Segment>
+            <Header as="h2" textAlign="center">
               {mode === "signup" ? "Sign Up" : "Log In"}
-            </Button>
-          </Form>
-        </Segment>
+            </Header>
+            <Form size="large" onSubmit={handleSubmit}>
+              <Form.Input
+                fluid
+                icon="user"
+                iconPosition="left"
+                placeholder="E-mail address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <Form.Input
+                fluid
+                icon="lock"
+                iconPosition="left"
+                placeholder="Password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
 
-        {mode === "signup" ? (
-          <Message>
-            Already have an account?
-            <Button onClick={() => setMode("login")}>Log In </Button>
-          </Message>
-        ) : (
-          <Message>
-            No account yet?
-            <Button onClick={() => setMode("signup")}>Sign Up </Button>
-          </Message>
-        )}
-      </Grid.Column>
-    </Grid>
+              <Button type="submit" fluid size="large">
+                {mode === "signup" ? "Sign Up" : "Log In"}
+              </Button>
+            </Form>
+          </Segment>
+
+          {mode === "signup" ? (
+            <Message>
+              Already have an account?
+              <Button onClick={() => setMode("login")}>Log In </Button>
+            </Message>
+          ) : (
+            <Message>
+              No account yet?
+              <Button onClick={() => setMode("signup")}>Sign Up </Button>
+            </Message>
+          )}
+        </Grid.Column>
+      </Grid>
+    </div>
   );
 }

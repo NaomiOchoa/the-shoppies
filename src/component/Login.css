@@ -1,0 +1,8 @@
+.login-page {
+  background-image: url("../shoppies-login.svg");
+  background-repeat: no-repeat;
+}
+
+.login-form {
+  height: 100%;
+}
