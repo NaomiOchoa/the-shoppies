@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import RealmAppProvider, { useRealmApp } from "./providers/RealmAppProvider";
+import RealmApolloProvider from "./providers/RealmApolloProvider";
+import Login from "./component/Login";
+import MainPage from "./component/MainPage";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RealmAppProvider>
+      <RequireAuthentication />
+    </RealmAppProvider>
   );
 }
 
 export default App;
+
+function RequireAuthentication() {
+  const app = useRealmApp();
+  if (!app) {
+    return <div>Loading</div>;
+  }
+  return app.user ? (
+    <RealmApolloProvider>
+      <MainPage />
+    </RealmApolloProvider>
+  ) : (
+    <Login />
+  );
+}
