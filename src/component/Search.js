@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Icon, Input, Item, Divider } from "semantic-ui-react";
+import { Icon, Input, Item, Divider, Loader } from "semantic-ui-react";
 import { GET_MOVIES } from "../graphql-operations";
 import { useQuery } from "@apollo/react-hooks";
 import SearchResult from "./SearchResult";
@@ -28,13 +28,20 @@ export default function Search() {
         onChange={(e) => setSearchValue(e.target.value)}
         className="search-input"
       />
-      <Item.Group divided>
-        {searchResults.map((movie) => {
-          return (
-            <SearchResult movie={movie} key={`${movie.Title} ${movie.Year}`} />
-          );
-        })}
-      </Item.Group>
+      {loading ? (
+        <Loader active inline size="medium" style={{ margin: "2em" }} />
+      ) : (
+        <Item.Group divided>
+          {searchResults.map((movie) => {
+            return (
+              <SearchResult
+                movie={movie}
+                key={`${movie.Title} ${movie.Year}`}
+              />
+            );
+          })}
+        </Item.Group>
+      )}
     </section>
   );
 }
