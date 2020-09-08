@@ -109,7 +109,6 @@ export default function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <Message error content={error.email} />
               <Form.Input
                 fluid
                 icon="lock"
@@ -119,11 +118,11 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <Message error content={error.password} />
 
               <Button type="submit" fluid size="large">
                 {mode === "signup" ? "Sign Up" : "Log In"}
               </Button>
+              <Message error content={`${error.email} ${error.password}`} />
             </Form>
           </Segment>
 
@@ -142,16 +141,18 @@ export default function Login() {
             </Message>
           ) : (
             <Message>
-              No account yet?
-              <Button
-                className="form-toggle-button"
-                onClick={() => {
-                  setMode("signup");
-                  setError({ email: "", password: "" });
-                }}
-              >
-                Sign Up{" "}
-              </Button>
+              <Message.Content>
+                No account yet?
+                <Button
+                  className="form-toggle-button"
+                  onClick={() => {
+                    setMode("signup");
+                    setError({ email: "", password: "" });
+                  }}
+                >
+                  Sign Up{" "}
+                </Button>
+              </Message.Content>
             </Message>
           )}
         </Grid.Column>
