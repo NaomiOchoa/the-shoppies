@@ -28,7 +28,7 @@ export default function Search() {
         onChange={(e) => setSearchValue(e.target.value)}
         className="search-input"
       />
-      <Item.Group>
+      <Item.Group divided>
         {searchResults.map((movie) => {
           return (
             <SearchResult movie={movie} key={`${movie.Title} ${movie.Year}`} />
