@@ -12,7 +12,11 @@ export default function SearchResult(props) {
 
   return (
     <Item>
-      <Item.Image src={movie.Poster} size="tiny" />
+      {movie.Poster === "N/A" ? (
+        <Item.Image src="/Default Movie-01.svg" size="tiny" />
+      ) : (
+        <Item.Image src={movie.Poster} size="tiny" />
+      )}
       <Item.Content>
         <Item.Header>{movie.Title}</Item.Header>
         <Item.Meta>
