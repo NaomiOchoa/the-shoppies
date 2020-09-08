@@ -6,7 +6,7 @@ export default function Submitted() {
   const { nominations } = useNominationsProvider();
 
   return (
-    <div>
+    <section className="content-section">
       <Card.Group centered>
         {nominations.map((nominee) => {
           return (
@@ -23,6 +23,6 @@ export default function Submitted() {
           );
         })}
       </Card.Group>
-    </div>
+    </section>
   );
 }

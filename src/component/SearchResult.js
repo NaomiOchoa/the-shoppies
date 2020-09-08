@@ -21,14 +21,14 @@ export default function SearchResult(props) {
         <Item.Extra>
           {!isNominated ? (
             <Button
-              primary
+              color="teal"
               floated="right"
               onClick={() => addNomination(movie)}
             >
               Nominate
             </Button>
           ) : (
-            <Button primary floated="right" disabled>
+            <Button color="teal" floated="right" disabled>
               Nominate
             </Button>
           )}

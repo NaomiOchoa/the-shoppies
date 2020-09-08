@@ -1,8 +1,13 @@
 .login-page {
-  background-image: url("../shoppies-login.svg");
+  background-image: url("../shoppies-login.svg"),
+    linear-gradient(#f0efec, white);
   background-repeat: no-repeat;
 }
 
 .login-form {
   height: 100%;
+}
+
+.ui.button.form-toggle-button {
+  margin: 0em 0.5em 0em 1em;
 }

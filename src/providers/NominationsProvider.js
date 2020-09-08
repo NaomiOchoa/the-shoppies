@@ -10,8 +10,26 @@ const NominationsProvider = ({ children }) => {
   const [nominations, setNominations] = React.useState(
     user.customData.nominatedMovies
   );
+  const [submitted, setSubmitted] = React.useState(user.customData.submitted);
 
   const [updateNominations, { data }] = useMutation(UPDATE_USER);
+
+  const submitNominations = async () => {
+    try {
+      await updateNominations({
+        variables: {
+          query: { _id: user._id },
+          set: {
+            submitted: true,
+          },
+        },
+      });
+      await user.refreshAccessToken();
+      setSubmitted(true);
+    } catch (error) {
+      console.error("Issue with submitting nominations:", error);
+    }
+  };
 
   const addNomination = async (movie) => {
     try {
@@ -33,7 +51,7 @@ const NominationsProvider = ({ children }) => {
 
       setNominations(newNominationList);
     } catch (error) {
-      console.error("Issue with updating saved stocks:", error);
+      console.error("Issue with updating nominations:", error);
     }
   };
 
@@ -54,13 +72,19 @@ const NominationsProvider = ({ children }) => {
 
       setNominations(newNominationList);
     } catch (error) {
-      console.error("Issue with updating saved stocks:", error);
+      console.error("Issue with updating nominations:", error);
     }
   };
 
   return (
     <NominationsContext.Provider
-      value={{ nominations, addNomination, removeNomination }}
+      value={{
+        nominations,
+        addNomination,
+        removeNomination,
+        submitted,
+        submitNominations,
+      }}
     >
       {children}
     </NominationsContext.Provider>

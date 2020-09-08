@@ -1,5 +1,4 @@
 import React from "react";
-import * as Realm from "realm-web";
 import { useRealmApp } from "./RealmAppProvider";
 
 import {

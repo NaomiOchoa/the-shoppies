@@ -1,4 +1,5 @@
 .main-page {
-  background-image: url("../shoppies-background.svg");
+  background-image: url("../shoppies-background.svg"),
+    linear-gradient(#f0efec, white);
   background-repeat: no-repeat;
 }
