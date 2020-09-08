@@ -10,12 +10,57 @@ import {
 import { useRealmApp } from "../providers/RealmAppProvider";
 import "./Login.css";
 import SiteHeader from "./SiteHeader";
+import clsx from "clsx";
 
 export default function Login() {
   const [mode, setMode] = React.useState("signup");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [error, setError] = React.useState({ email: "", password: "" });
   const { registerUser, logIn } = useRealmApp();
+
+  function parseAuthenticationError(err) {
+    const parts = err.message.split(":");
+    const reason = parts[parts.length - 1].trimStart();
+    if (!reason) return { status: "", message: "" };
+    const reasonRegex = /(?<message>.+)\s\(status (?<status>[0-9][0-9][0-9])/;
+    const match = reason.match(reasonRegex);
+    const { status, message } = match?.groups ?? {};
+    return { status, message };
+  }
+
+  function handleAuthenticationError(err) {
+    console.error(err);
+    const { status, message } = parseAuthenticationError(err);
+    const errorType = message || status;
+    switch (errorType) {
+      case "invalid username":
+        setError((prevErr) => ({
+          ...prevErr,
+          email: "Invalid email address.",
+        }));
+        break;
+      case "invalid username/password":
+      case "invalid password":
+      case "401":
+        setError((err) => ({ ...error, password: "Incorrect password." }));
+        break;
+      case "name already in use":
+      case "409":
+        setError((err) => ({
+          ...error,
+          email: "Email is already registered.",
+        }));
+        break;
+      case "password must be between 6 and 128 characters":
+      case "400":
+        setError((err) => ({
+          ...error,
+          password: "Password must be between 6 and 128 characters.",
+        }));
+        break;
+    }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,6 +71,7 @@ export default function Login() {
     try {
       return await logIn(email, password);
     } catch (err) {
+      handleAuthenticationError(err);
       console.error(err);
     }
   };
@@ -35,10 +81,12 @@ export default function Login() {
       await registerUser(email, password);
       return await handleLogin();
     } catch (err) {
+      handleAuthenticationError(err);
       console.error(err);
     }
   };
 
+  console.log(error);
   return (
     <div className="main-content login-page">
       <SiteHeader location={"login"} />
@@ -48,7 +96,11 @@ export default function Login() {
             <Header as="h2" textAlign="center">
               {mode === "signup" ? "Sign Up" : "Log In"}
             </Header>
-            <Form size="large" onSubmit={handleSubmit}>
+            <Form
+              size="large"
+              onSubmit={handleSubmit}
+              className={clsx((error.password || error.email) && "error")}
+            >
               <Form.Input
                 fluid
                 icon="user"
@@ -57,6 +109,7 @@ export default function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
+              <Message error content={error.email} />
               <Form.Input
                 fluid
                 icon="lock"
@@ -66,6 +119,7 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              <Message error content={error.password} />
 
               <Button type="submit" fluid size="large">
                 {mode === "signup" ? "Sign Up" : "Log In"}
@@ -78,7 +132,10 @@ export default function Login() {
               Already have an account?
               <Button
                 className="form-toggle-button"
-                onClick={() => setMode("login")}
+                onClick={() => {
+                  setMode("login");
+                  setError({ email: "", password: "" });
+                }}
               >
                 Log In{" "}
               </Button>
@@ -88,7 +145,10 @@ export default function Login() {
               No account yet?
               <Button
                 className="form-toggle-button"
-                onClick={() => setMode("signup")}
+                onClick={() => {
+                  setMode("signup");
+                  setError({ email: "", password: "" });
+                }}
               >
                 Sign Up{" "}
               </Button>
