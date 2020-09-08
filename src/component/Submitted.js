@@ -11,10 +11,17 @@ export default function Submitted() {
         {nominations.map((nominee) => {
           return (
             <Card key={`${nominee.Title} ${nominee.Year}`}>
-              <Image
-                src={nominee.Poster}
-                style={{ height: "428px", width: "292px" }}
-              />
+              {nominee.Poster === "N/A" ? (
+                <Image
+                  src={"/Default Movie-01.svg"}
+                  style={{ height: "428px", width: "292px" }}
+                />
+              ) : (
+                <Image
+                  src={nominee.Poster}
+                  style={{ height: "428px", width: "292px" }}
+                />
+              )}
               <Card.Content>
                 <Card.Header>{nominee.Title}</Card.Header>
                 <Card.Meta>{nominee.Year}</Card.Meta>

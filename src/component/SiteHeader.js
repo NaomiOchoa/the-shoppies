@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Button, Icon } from "semantic-ui-react";
+import { Header, Button, Grid } from "semantic-ui-react";
 import { useRealmApp } from "../providers/RealmAppProvider";
 import "./SiteHeader.css";
 
@@ -9,11 +9,7 @@ export default function SiteHeader(props) {
 
   return (
     <header className="site-header">
-      <Header
-        as="h1"
-        className="site-title"
-        style={{ margin: "1em", color: "#F0EFEC", fontSize: "3em" }}
-      >
+      <Header as="h1" className="site-title" id="site-title">
         The Shoppies
       </Header>
       {location === "main" ? (
