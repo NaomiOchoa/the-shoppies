@@ -76,12 +76,22 @@ export default function Login() {
           {mode === "signup" ? (
             <Message>
               Already have an account?
-              <Button onClick={() => setMode("login")}>Log In </Button>
+              <Button
+                className="form-toggle-button"
+                onClick={() => setMode("login")}
+              >
+                Log In{" "}
+              </Button>
             </Message>
           ) : (
             <Message>
               No account yet?
-              <Button onClick={() => setMode("signup")}>Sign Up </Button>
+              <Button
+                className="form-toggle-button"
+                onClick={() => setMode("signup")}
+              >
+                Sign Up{" "}
+              </Button>
             </Message>
           )}
         </Grid.Column>

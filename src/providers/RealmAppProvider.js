@@ -37,6 +37,7 @@ const RealmAppProvider = ({ children }) => {
         logIn,
         logOut,
         user,
+        app,
       }}
     >
       {children}

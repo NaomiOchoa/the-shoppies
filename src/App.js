@@ -4,6 +4,7 @@ import RealmApolloProvider from "./providers/RealmApolloProvider";
 import Login from "./component/Login";
 import MainPage from "./component/MainPage";
 import "./App.css";
+import NominationsProvider from "./providers/NominationsProvider";
 
 function App() {
   return (
@@ -22,7 +23,9 @@ function RequireAuthentication() {
   }
   return app.user ? (
     <RealmApolloProvider>
-      <MainPage />
+      <NominationsProvider>
+        <MainPage />
+      </NominationsProvider>
     </RealmApolloProvider>
   ) : (
     <Login />

@@ -42,6 +42,12 @@ body {
 }
 
 .main-content {
-  height: 100vh;
   width: 100vw;
+  min-height: 100vh;
+}
+
+.content-section {
+  margin: 2em;
+  display: flex;
+  flex-direction: column;
 }
