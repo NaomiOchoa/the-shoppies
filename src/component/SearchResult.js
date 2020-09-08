@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Icon, Image, Item, Label } from "semantic-ui-react";
+import { Button, Item } from "semantic-ui-react";
 import { useNominationsProvider } from "../providers/NominationsProvider";
 
 export default function SearchResult(props) {

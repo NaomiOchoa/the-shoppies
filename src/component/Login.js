@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Button,
   Form,
@@ -86,7 +86,6 @@ export default function Login() {
     }
   };
 
-  console.log(error);
   return (
     <div className="main-content login-page">
       <SiteHeader location={"login"} />
