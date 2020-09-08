@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext } from "react";
 import { useRealmApp } from "./RealmAppProvider";
 import { UPDATE_USER } from "../graphql-operations";
 import { useMutation } from "@apollo/react-hooks";

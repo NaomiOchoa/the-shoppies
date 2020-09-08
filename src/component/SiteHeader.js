@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Button, Grid } from "semantic-ui-react";
+import { Header, Button } from "semantic-ui-react";
 import { useRealmApp } from "../providers/RealmAppProvider";
 import "./SiteHeader.css";
 

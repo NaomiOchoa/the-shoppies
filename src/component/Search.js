@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Icon, Input, Item, Divider, Loader } from "semantic-ui-react";
 import { GET_MOVIES } from "../graphql-operations";
 import { useQuery } from "@apollo/react-hooks";

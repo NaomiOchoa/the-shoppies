@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from "react";
+import React from "react";
 import * as Realm from "realm-web";
 
 const REALM_APP_ID = "shoppies-app-frnsh";
@@ -8,7 +8,7 @@ const RealmAppContext = React.createContext(null);
 
 const RealmAppProvider = ({ children }) => {
   const appRef = React.useRef(app);
-  const [user, setUser] = useState(app.currentUser);
+  const [user, setUser] = React.useState(app.currentUser);
 
   React.useEffect(() => {
     setUser(app.currentUser);

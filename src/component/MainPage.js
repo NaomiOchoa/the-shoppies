@@ -1,5 +1,4 @@
 import React from "react";
-import { useRealmApp } from "../providers/RealmAppProvider";
 import { Header } from "semantic-ui-react";
 import SiteHeader from "./SiteHeader";
 import "./MainPage.css";
