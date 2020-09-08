@@ -4,7 +4,11 @@ import { useNominationsProvider } from "../providers/NominationsProvider";
 
 export default function SearchResult(props) {
   const { movie } = props;
-  const { addNomination } = useNominationsProvider();
+  const { nominations, addNomination } = useNominationsProvider();
+
+  const isNominated = !!nominations.filter((nom) => {
+    return nom.Title === movie.Title && nom.Year === movie.Year;
+  }).length;
 
   return (
     <Item>
@@ -15,9 +19,19 @@ export default function SearchResult(props) {
           <span className="year">{movie.Year}</span>
         </Item.Meta>
         <Item.Extra>
-          <Button primary floated="right" onClick={() => addNomination(movie)}>
-            Nominate
-          </Button>
+          {!isNominated ? (
+            <Button
+              primary
+              floated="right"
+              onClick={() => addNomination(movie)}
+            >
+              Nominate
+            </Button>
+          ) : (
+            <Button primary floated="right" disabled>
+              Nominate
+            </Button>
+          )}
         </Item.Extra>
       </Item.Content>
     </Item>

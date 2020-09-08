@@ -29,6 +29,8 @@ const NominationsProvider = ({ children }) => {
         },
       });
 
+      await user.refreshAccessToken();
+
       setNominations(newNominationList);
     } catch (error) {
       console.error("Issue with updating saved stocks:", error);
@@ -47,6 +49,8 @@ const NominationsProvider = ({ children }) => {
           },
         },
       });
+
+      await user.refreshAccessToken();
 
       setNominations(newNominationList);
     } catch (error) {

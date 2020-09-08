@@ -5,16 +5,22 @@ import SiteHeader from "./SiteHeader";
 import "./MainPage.css";
 import Nominations from "./Nominations";
 import Search from "./Search";
+import SubmissionPage from "./SubmissionPage";
+import { useNominationsProvider } from "../providers/NominationsProvider";
+import Submitted from "./Submitted";
 
 export default function MainPage() {
+  const { nominations } = useNominationsProvider();
+
   return (
     <div className="main-content main-page">
       <SiteHeader location={"main"} />
       <Header as="h2" textAlign="center">
-        Choose up to 5 movies to nominate!
+        Choose 5 movies to nominate!
       </Header>
       <Nominations />
-      <Search />
+      {nominations.length < 5 ? <Search /> : <SubmissionPage />}
+      <Submitted />
     </div>
   );
 }

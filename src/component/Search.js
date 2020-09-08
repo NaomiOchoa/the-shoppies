@@ -20,14 +20,16 @@ export default function Search() {
     <section>
       <Input
         iconPosition="left"
-        icon={<Icon name="search" inverted circular link />}
+        icon={<Icon name="search" inverted circular />}
         placeholder="Search..."
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
       />
       <Item.Group>
         {searchResults.map((movie) => {
-          return <SearchResult movie={movie} />;
+          return (
+            <SearchResult movie={movie} key={`${movie.Title} ${movie.Year}`} />
+          );
         })}
       </Item.Group>
     </section>
