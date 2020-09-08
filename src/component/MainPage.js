@@ -4,6 +4,7 @@ import { Header } from "semantic-ui-react";
 import SiteHeader from "./SiteHeader";
 import "./MainPage.css";
 import Nominations from "./Nominations";
+import Search from "./Search";
 
 export default function MainPage() {
   return (
@@ -13,6 +14,7 @@ export default function MainPage() {
         Choose up to 5 movies to nominate!
       </Header>
       <Nominations />
+      <Search />
     </div>
   );
 }
