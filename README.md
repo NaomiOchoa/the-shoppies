@@ -1,8 +1,6 @@
-### Hosted at:
+### Hosted at: https://shoppies-app-frnsh.mongodbstitch.com/
 
-https://shoppies-app-frnsh.mongodbstitch.com/
-
-### Project Description
+## Project Description
 
 The Shoppies is a movie nomination web application for the Shoppies awards.
 
