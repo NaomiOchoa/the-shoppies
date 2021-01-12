@@ -24,13 +24,19 @@ export default function SearchResult(props) {
         </Item.Meta>
         <Item.Extra>
           {!isNominated ? (
+            Number(movie.Year) > 2010 && Number(movie.Year) < 2021 ?(
             <Button
-              color="teal"
-              floated="right"
-              onClick={() => addNomination(movie)}
+            color="teal"
+            floated="right"
+            onClick={() => {
+              addNomination(movie)
+            }}
             >
               Nominate
-            </Button>
+            </Button>) :
+            (<Button color="teal" floated="right" disabled>
+            Nominate
+          </Button>)
           ) : (
             <Button color="teal" floated="right" disabled>
               Nominate

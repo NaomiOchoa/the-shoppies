@@ -10,7 +10,7 @@ export default function SiteHeader(props) {
   return (
     <header className="site-header">
       <Header as="h1" className="site-title" id="site-title">
-        The Shoppies
+        Best of the Decade: 2010's
       </Header>
       {location === "main" ? (
         <Button

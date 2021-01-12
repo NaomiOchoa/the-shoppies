@@ -1,7 +1,7 @@
 import React from "react";
 import * as Realm from "realm-web";
 
-const REALM_APP_ID = "shoppies-app-frnsh";
+const REALM_APP_ID = "best-of-the-decade-loolb";
 const app = new Realm.App({ id: REALM_APP_ID });
 
 const RealmAppContext = React.createContext(null);

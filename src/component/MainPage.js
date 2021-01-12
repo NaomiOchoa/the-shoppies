@@ -7,6 +7,7 @@ import Search from "./Search";
 import SubmissionPage from "./SubmissionPage";
 import { useNominationsProvider } from "../providers/NominationsProvider";
 import Submitted from "./Submitted";
+import PopcornConfetti from "./PopcornConfetti";
 
 export default function MainPage() {
   const { nominations, submitted } = useNominationsProvider();
@@ -30,6 +31,7 @@ export default function MainPage() {
           {nominations.length < 5 ? <Search /> : <SubmissionPage />}
         </React.Fragment>
       )}
+      <PopcornConfetti/>
     </div>
   );
 }

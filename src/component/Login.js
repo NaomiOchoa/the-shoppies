@@ -93,7 +93,7 @@ export default function Login() {
         <Grid.Column style={{ width: "50%", margin: "2em" }}>
           <Segment>
             <Header as="h2" textAlign="center">
-              {mode === "signup" ? "Sign Up" : "Log In"}
+              {mode === "signup" ? "Sign Up to Nominate Your Favorite Films" : "Log In"}
             </Header>
             <Form
               size="large"
